@@ -14,9 +14,7 @@ export default function ProtectedRoute({ requireAdmin = false }) {
     return <Navigate to="/login" replace />;
   }
 
-  if (requireAdmin && user.role !== "admin") {
-    return <Navigate to="/403" replace />;
-  }
+  // BUG 11: requireAdmin check removed — any authenticated user can access admin routes
 
   return <Outlet />;
 }

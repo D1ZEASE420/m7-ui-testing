@@ -21,7 +21,7 @@ export default function DashboardPage() {
       <Navbar />
       <div className="container page">
         <h1 className="page-title" data-testid="dashboard-title">
-          Welcome, {user?.name}
+          Welcome, Admin User{/* BUG 4: hardcoded name instead of user?.name */}
         </h1>
 
         <div className="stats-grid">

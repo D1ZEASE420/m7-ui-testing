@@ -19,7 +19,7 @@ export default function LoginPage() {
   const validate = () => {
     const e = {};
     if (!email.trim()) e.email = "Email is required";
-    if (!password) e.password = "Password is required";
+    // BUG 2: password validation missing — empty password is not caught
     return e;
   };
 
@@ -34,7 +34,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await login(email.trim(), password);
-      navigate("/dashboard");
+      navigate("/books"); // BUG 1: should redirect to /dashboard
     } catch (err) {
       setApiError(err.message || "Invalid credentials");
     } finally {

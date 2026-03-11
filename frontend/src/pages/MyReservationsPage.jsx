@@ -12,9 +12,12 @@ function formatDate(iso) {
   });
 }
 
+// BUG 15: module-level cache — new reservations require a full page reload to appear
+let _reservationsCache = null;
+
 export default function MyReservationsPage() {
-  const [reservations, setReservations] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [reservations, setReservations] = useState(_reservationsCache ?? []);
+  const [loading, setLoading] = useState(_reservationsCache === null);
   const [error, setError] = useState("");
   const [cancelling, setCancelling] = useState(null);
 
@@ -23,6 +26,7 @@ export default function MyReservationsPage() {
     setError("");
     try {
       const data = await getMyReservations();
+      _reservationsCache = data; // BUG 15: caches — won't refresh after new reservation
       setReservations(data);
     } catch (err) {
       setError(err.message || "Failed to load reservations");
@@ -32,14 +36,15 @@ export default function MyReservationsPage() {
   };
 
   useEffect(() => {
-    fetchReservations();
+    if (_reservationsCache === null) fetchReservations(); // BUG 15: skipped on re-navigation
   }, []);
 
   const handleCancel = async (reservationId) => {
     setCancelling(reservationId);
     try {
       await cancelReservation(reservationId);
-      setReservations((prev) => prev.filter((r) => r.id !== reservationId));
+      // BUG 9: removes first element instead of the one with matching id
+      setReservations((prev) => prev.slice(1));
     } catch (err) {
       setError(err.message || "Failed to cancel reservation");
     } finally {
@@ -66,7 +71,7 @@ export default function MyReservationsPage() {
             {reservations.map((r) => (
               <div
                 key={r.id}
-                className="reservation-card"
+                className={`reservation-card rc-${Math.random().toString(36).slice(2, 6)}`} // BUG 16: flaky CSS class
                 data-testid={`reservation-row-${r.id}`}
               >
                 <div className="reservation-info">

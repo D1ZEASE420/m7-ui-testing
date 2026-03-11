@@ -50,8 +50,7 @@ export default function AdminBooksPage() {
 
     setSubmitting(true);
     try {
-      const newBook = await adminAddBook(form);
-      setBooks((prev) => [...prev, newBook]);
+      await adminAddBook(form); // BUG 14: book saved but state not updated — list won't refresh
       setForm({ title: "", author: "", category: "Programming", available: true });
     } catch (err) {
       setFormError(err.message || "Failed to add book");

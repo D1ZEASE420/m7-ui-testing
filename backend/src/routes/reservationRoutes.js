@@ -32,12 +32,7 @@ router.post("/reservations", requireAuth, (req, res) => {
     return res.status(400).json({ error: "Book is not available" });
   }
 
-  const existing = store.reservations.find(
-    (r) => r.userId === userId && r.bookId === bookId && r.status === "active"
-  );
-  if (existing) {
-    return res.status(400).json({ error: "You have already reserved this book" });
-  }
+  // BUG 8: duplicate reservation check removed — users can reserve the same book twice
 
   const reservation = {
     id: store.nextReservationId++,

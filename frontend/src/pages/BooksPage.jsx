@@ -14,6 +14,7 @@ export default function BooksPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
+  const [appliedSearch, setAppliedSearch] = useState(""); // BUG 7: tracks last non-empty search
   const [category, setCategory] = useState("All");
   const [availability, setAvailability] = useState("All");
   const [reserving, setReserving] = useState(null);
@@ -36,12 +37,19 @@ export default function BooksPage() {
     fetchBooks();
   }, [fetchBooks]);
 
+  // BUG 12: when availability filter is "Unavailable", loading is forced back to true
+  useEffect(() => {
+    if (availability === "Unavailable") {
+      setLoading(true); // spinner never clears for this filter path
+    }
+  }, [availability]);
+
   const filtered = books.filter((b) => {
-    const q = search.toLowerCase();
+    const q = appliedSearch; // BUG 6+7: case-sensitive; clearing input doesn't reset filter
     const matchSearch =
       !q ||
-      b.title.toLowerCase().includes(q) ||
-      b.author.toLowerCase().includes(q);
+      b.title.includes(q) ||
+      b.author.includes(q);
     const matchCategory = category === "All" || b.category === category;
     const matchAvailability =
       availability === "All" ||
@@ -52,13 +60,14 @@ export default function BooksPage() {
 
   const handleReserve = async (bookId) => {
     setReserving(bookId);
+    // BUG 13: toast fires before await — shows success even when API fails
+    setToast("Book reserved successfully!");
+    setTimeout(() => setToast(""), 3000);
     try {
       await createReservation(bookId);
       setBooks((prev) =>
         prev.map((b) => (b.id === bookId ? { ...b, available: false } : b))
       );
-      setToast("Book reserved successfully!");
-      setTimeout(() => setToast(""), 3000);
     } catch (err) {
       setError(err.message || "Failed to reserve book");
     } finally {
@@ -77,7 +86,10 @@ export default function BooksPage() {
             type="text"
             placeholder="Search by title or author…"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              if (e.target.value) setAppliedSearch(e.target.value); // BUG 7: never resets on clear
+            }}
             data-testid="books-search"
           />
           <select

@@ -31,7 +31,7 @@ export default function BookCard({ book, onReserve, reserving }) {
           <button
             className="btn btn-primary btn-sm"
             onClick={() => onReserve(book.id)}
-            disabled={!book.available || reserving === book.id}
+            disabled={(book.id !== 6 && !book.available) || reserving === book.id} // BUG 5: book 6 ignore availability
             data-testid={`book-reserve-${book.id}`}
           >
             {reserving === book.id ? "Reserving…" : "Reserve"}

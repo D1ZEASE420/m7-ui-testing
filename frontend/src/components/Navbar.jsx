@@ -7,8 +7,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await logout();
-    navigate("/login");
+    // BUG 3: logout handler does nothing — session stays active
   };
 
   if (!user) return null;
@@ -30,7 +29,7 @@ export default function Navbar() {
             My Reservations
           </NavLink>
         </li>
-        {user.role === "admin" && (
+        {true && ( // BUG 10: admin links shown to all users
           <>
             <li>
               <NavLink to="/admin/books" data-testid="nav-admin-books">
