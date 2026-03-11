@@ -1,0 +1,105 @@
+export const seedUsers = [
+  { id: 1, name: "Student One", email: "student@test.com", password: "test123", role: "student" },
+  { id: 2, name: "Student Two", email: "student2@test.com", password: "test123", role: "student" },
+  { id: 3, name: "Admin User", email: "admin@test.com", password: "admin123", role: "admin" },
+];
+
+export const seedBooks = [
+  {
+    id: 1,
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    category: "Programming",
+    description: "A handbook of agile software craftsmanship. Helps programmers write cleaner, more maintainable code.",
+    available: true,
+  },
+  {
+    id: 2,
+    title: "Eloquent JavaScript",
+    author: "Marijn Haverbeke",
+    category: "JavaScript",
+    description: "A modern introduction to programming and JavaScript. Covers the language thoroughly with exercises.",
+    available: true,
+  },
+  {
+    id: 3,
+    title: "You Don't Know JS",
+    author: "Kyle Simpson",
+    category: "JavaScript",
+    description: "A series diving deep into JavaScript's core mechanisms. Essential for serious JS developers.",
+    available: true,
+  },
+  {
+    id: 4,
+    title: "Refactoring",
+    author: "Martin Fowler",
+    category: "Programming",
+    description: "Improving the design of existing code. A catalogue of refactoring techniques with examples.",
+    available: true,
+  },
+  {
+    id: 5,
+    title: "The Pragmatic Programmer",
+    author: "Andrew Hunt",
+    category: "Programming",
+    description: "A journey from journeyman to master. Timeless advice for software developers.",
+    available: true,
+  },
+  {
+    id: 6,
+    title: "JavaScript: The Good Parts",
+    author: "Douglas Crockford",
+    category: "JavaScript",
+    description: "Unearthing the excellence in JavaScript. A guide to the best features of the language.",
+    available: false,
+  },
+  {
+    id: 7,
+    title: "Domain-Driven Design",
+    author: "Eric Evans",
+    category: "Architecture",
+    description: "Tackling complexity in the heart of software. The foundational book on DDD concepts.",
+    available: true,
+  },
+  {
+    id: 8,
+    title: "CSS Secrets",
+    author: "Lea Verou",
+    category: "CSS",
+    description: "Better solutions to everyday web design problems. Tips and tricks for modern CSS.",
+    available: false,
+  },
+  {
+    id: 9,
+    title: "The Comprehensive Guide to Testing JavaScript Applications: From Unit Tests to End-to-End Automation",
+    author: "Author Name",
+    category: "Testing",
+    description: "An exhaustive guide covering all aspects of testing JavaScript applications, from simple unit tests to complex end-to-end automation scenarios.",
+    available: true,
+  },
+  {
+    id: 10,
+    title: "design patterns: Elements of Reusable Object-Oriented Software",
+    author: "Gang of Four",
+    category: "Architecture",
+    description: "The classic reference for object-oriented design patterns. Describes solutions to common design problems.",
+    available: true,
+  },
+];
+
+export const seedReservations = [
+  {
+    id: 1,
+    userId: 1,
+    bookId: 3,
+    createdAt: "2026-03-01T10:00:00.000Z",
+    status: "active",
+  },
+  {
+    id: 2,
+    userId: 2,
+    bookId: 7,
+    createdAt: "2026-03-05T14:30:00.000Z",
+    status: "active",
+  },
+];
