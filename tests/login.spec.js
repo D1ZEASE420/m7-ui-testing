@@ -6,46 +6,46 @@ test.beforeEach(async ({ context }) => {
   await resetStore(context);
 });
 
-test("user can open login page", async ({ page }) => {
+test.fixme("user can open login page", async ({ page }) => {
   // TODO
 });
 
-test("student can log in with valid credentials", async ({ page }) => {
+test.fixme("student can log in with valid credentials", async ({ page }) => {
   // TODO
 });
 
-test("admin can log in with valid admin credentials", async ({ page }) => {
+test.fixme("admin can log in with valid admin credentials", async ({ page }) => {
   // TODO
 });
 
-test("successful login redirects to dashboard", async ({ page }) => {
+test.fixme("successful login redirects to dashboard", async ({ page }) => {
   // TODO
 });
 
-test("empty email shows validation message", async ({ page }) => {
+test.fixme("empty email shows validation message", async ({ page }) => {
   // TODO
 });
 
-test("empty password shows validation message", async ({ page }) => {
+test.fixme("empty password shows validation message", async ({ page }) => {
   // TODO
 });
 
-test("wrong password shows invalid credentials error", async ({ page }) => {
+test.fixme("wrong password shows invalid credentials error", async ({ page }) => {
   // TODO
 });
 
-test("unknown email shows invalid credentials error", async ({ page }) => {
+test.fixme("unknown email shows invalid credentials error", async ({ page }) => {
   // TODO
 });
 
-test("user stays on login page after failed login", async ({ page }) => {
+test.fixme("user stays on login page after failed login", async ({ page }) => {
   // TODO
 });
 
-test("already logged-in user visiting /login is redirected to dashboard", async ({ page, context }) => {
+test.fixme("already logged-in user visiting /login is redirected to dashboard", async ({ page, context }) => {
   // TODO
 });
 
-test("login button is disabled while request is in progress", async ({ page }) => {
+test.fixme("login button is disabled while request is in progress", async ({ page }) => {
   // TODO
 });

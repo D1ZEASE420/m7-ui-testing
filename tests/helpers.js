@@ -12,7 +12,6 @@ export async function resetStore(context) {
   await context.request.post(`${API}/test/reset`);
 }
 
-// Student-authenticated test: resets store and logs in as student before each test
 export const studentTest = base.extend({
   page: async ({ page, context }, use) => {
     await resetStore(context);
@@ -21,7 +20,6 @@ export const studentTest = base.extend({
   },
 });
 
-// Admin-authenticated test: resets store and logs in as admin before each test
 export const adminTest = base.extend({
   page: async ({ page, context }, use) => {
     await resetStore(context);
@@ -30,26 +28,23 @@ export const adminTest = base.extend({
   },
 });
 
-// Seed credentials (for plain login tests)
 export const STUDENT = { email: "student@test.com", password: "test123" };
 export const STUDENT2 = { email: "student2@test.com", password: "test123" };
 export const ADMIN = { email: "admin@test.com", password: "admin123" };
 
-// Seed book IDs
 export const BOOKS = {
-  cleanCode: 1,           // available
-  eloquentJs: 2,          // available
-  youDontKnowJs: 3,       // available, reserved by student1
-  refactoring: 4,         // available
-  pragmaticProgrammer: 5, // available
-  jsGoodParts: 6,         // UNAVAILABLE
-  ddd: 7,                 // available, reserved by student2
-  cssSecrets: 8,          // UNAVAILABLE
-  longTitle: 9,           // available
-  designPatterns: 10,     // available (lowercase title)
+  cleanCode: 1,
+  eloquentJs: 2,
+  youDontKnowJs: 3,
+  refactoring: 4,
+  pragmaticProgrammer: 5,
+  jsGoodParts: 6,
+  ddd: 7,
+  cssSecrets: 8,
+  longTitle: 9,
+  designPatterns: 10,
 };
 
-// Seed reservation IDs
 export const RESERVATIONS = {
   student1Book3: 1,
   student2Book7: 2,
