@@ -1,0 +1,23 @@
+{
+  "name": "m7-ui-testing",
+  "version": "1.0.0",
+  "description": "A teaching application for a Playwright UI testing course. Students receive this app and write all the tests themselves.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikatgen/m7-ui-testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vikatgen/m7-ui-testing/issues"
+  },
+  "homepage": "https://github.com/vikatgen/m7-ui-testing#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.5.0"
+  }
+}
